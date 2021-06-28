@@ -90,7 +90,7 @@
       </svg>
       <div class="time-display">
         <p v-if="resting">Descanso</p>
-        <h2>{{ timeDisplay }}</h2>
+        <h2 class="number-time">{{ timeDisplay }}</h2>
       </div>
     </div>
     <button @click="handleTimer" :disabled="resting">{{ buttonText }}</button>
@@ -265,30 +265,39 @@ h1 {
   font-size: 64px;
 }
 .timer {
-  margin-top: 150px;
-  width: 330px;
-  height: 330px;
+  margin-top: 50px;
+  width: 190px;
+  height: 190px;
   position: relative;
+  display: flex;
 }
 #first-segment {
   position: absolute;
   top: 0px;
   right: 0px;
+  width: 6rem;
+  height: 6rem;
 }
 #second-segment {
   position: absolute;
   bottom: 0px;
   right: 0px;
+  width: 6rem;
+  height: 6rem;
 }
 #third-segment {
   position: absolute;
   bottom: 0px;
   left: 0px;
+  width: 6rem;
+  height: 6rem;
 }
 #fourth-segment {
   position: absolute;
   top: 0px;
   left: 0px;
+  width: 6rem;
+  height: 6rem;
 }
 .time-display {
   position: absolute;
@@ -300,6 +309,14 @@ h1 {
   align-items: center;
   justify-content: center;
 }
+.time-display .number-time{
+  font-size: 2.5rem;
+}
+
+.time-display p{
+  font-size: 1.5rem;
+}
+
 p {
   font-size: 48px;
   line-height: 48px;

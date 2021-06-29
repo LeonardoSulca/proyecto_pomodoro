@@ -97,8 +97,8 @@
       </div>
     </div>
     <div class="container-btn-star-end">
-      <button class="btn-start-pause" @click="handleTimer" :disabled="resting">{{ buttonText }}</button>
-      <button class="btn-stop-done" @click="handleTimer" :disabled="resting">{{ buttonText }}</button>
+      <button class="btn-start-pause" @click="handleTimer" :disabled="resting">{{ buttonStarPause }}</button>
+      <button class="btn-stop-done" @click="handleTimer" :disabled="resting">{{ buttonStopDone }}</button>
     </div>
   </div>
 </template>
@@ -116,7 +116,8 @@ export default {
       restDuration: 0.1 * 60, 
       currentTimeInSeconds: pomodoroDuration,
       currentSegment: 1,
-      buttonText: "¡Iniciar!",
+      buttonStarPause: "¡Iniciar!",
+      buttonStopDone: "¡Parar!",
       topRight: null,
       bottomRight: null,
       bottomLeft: null,
@@ -142,23 +143,23 @@ export default {
   },
   methods: {
     handleTimer() {
-      if (this.buttonText === "¡Iniciar!" || this.buttonText === "Continuar") {
+      if (this.buttonStarPause === "¡Iniciar!" || this.buttonStarPause === "Continuar") {
         this.animateBar();
-        this.buttonText = "Pausa";
-      } else if (this.buttonText === "Pausa") {
+        this.buttonStarPause = "Pausa";
+      } else if (this.buttonStarPause === "Pausa") {
         this.pauseBar();
-        this.buttonText = "Continuar";
+        this.buttonStarPause = "Continuar";
       }
     },
     onEnd ({ lastSentence}) {
       console.log(lastSentence);
-      if(lastSentence.includes("iniciar") && this.buttonText === "¡Iniciar!"){
+      if(lastSentence.includes("iniciar") && this.buttonStarPause === "¡Iniciar!"){
         this.handleTimer()
       }
-      if(lastSentence.includes("continuar") && this.buttonText === "Continuar"){
+      if(lastSentence.includes("continuar") && this.buttonStarPause === "Continuar"){
         this.handleTimer()
       }
-      if(lastSentence.includes("pausa") && this.buttonText === "Pausa"){
+      if(lastSentence.includes("pausa") && this.buttonStarPause === "Pausa"){
         this.handleTimer()
       }
     },
@@ -228,7 +229,7 @@ export default {
         this.beepAudio.play();
         // Immediately disable button and set state
         this.resting = true;
-        this.buttonText = "Descanso";
+        this.buttonStarPause = "Descanso";
         setTimeout(() => {
           // Change time to reflect rest duration
           this.currentTimeInSeconds = this.restDuration;
@@ -251,7 +252,7 @@ export default {
         clearInterval(this.interval);
         this.beepAudio.play();
         this.currentTimeInSeconds = this.pomodoroDuration;
-        this.buttonText = "¡Iniciar!";
+        this.buttonStarPause = "¡Iniciar!";
         this.resting = false;
       }, this.restDuration * 1000);
     },

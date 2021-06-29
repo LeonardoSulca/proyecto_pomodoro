@@ -7,12 +7,12 @@
       <h1>Pomodoro &#127813;</h1>
     </div>
     <div class="container-btn-type">
-      <button class="btn-pomodoro-a"> Pomodoro</button>
-      <button class="btn-pomodoro-b"> Pomodoro</button>
-      <button class="btn-shortBreak-a"> Descanso Corto</button>
-      <button class="btn-shortBreak-b"> Descanso Corto</button>
-      <button class="btn-longBreak-a"> Descanso Largo</button>
-      <button class="btn-longBreak-b"> Descanso Largo</button>
+      <button v-if="showTypeButtonPomodoro" class="btn-pomodoro-a"> Pomodoro</button>
+      <button @click="handleButtonPomodoro" v-if="!showTypeButtonPomodoro" class="btn-pomodoro-b"> Pomodoro</button>
+      <button v-if="showTypeButtonShortBreak" class="btn-shortBreak-a"> Descanso Corto</button>
+      <button @click="handleButtonShortBreak" v-if="!showTypeButtonShortBreak" class="btn-shortBreak-b"> Descanso Corto</button>
+      <button v-if="showTypeButtonLongBreak" class="btn-longBreak-a"> Descanso Largo</button>
+      <button @click="handleButtonLongBreak" v-if="!showTypeButtonLongBreak" class="btn-longBreak-b"> Descanso Largo</button>
     </div>
     <div class="timer">
       <svg
@@ -134,6 +134,9 @@ export default {
       currentSegment: 1,
       buttonStarPause: "¡Iniciar!",
       buttonStopDone: "¡Parar!",
+      showTypeButtonPomodoro: true,
+      showTypeButtonLongBreak: false,
+      showTypeButtonShortBreak: false,
       topRight: null,
       bottomRight: null,
       bottomLeft: null,
@@ -158,6 +161,21 @@ export default {
     this.topLeft.set(1);
   },
   methods: {
+    handleButtonPomodoro() {
+      this.showTypeButtonPomodoro = true;
+      this.showTypeButtonShortBreak = false;
+      this.showTypeButtonLongBreak = false;
+    },
+    handleButtonShortBreak() {
+      this.showTypeButtonPomodoro = false;
+      this.showTypeButtonShortBreak = true;
+      this.showTypeButtonLongBreak = false;
+    },
+    handleButtonLongBreak() {
+      this.showTypeButtonPomodoro = false;
+      this.showTypeButtonShortBreak = false;
+      this.showTypeButtonLongBreak = true;
+    },
     handleTimer() {
       if (this.buttonStarPause === "¡Iniciar!" || this.buttonStarPause === "Continuar") {
         this.animateBar();

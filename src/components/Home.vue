@@ -6,6 +6,14 @@
     <div class="title">
       <h1>Pomodoro &#127813;</h1>
     </div>
+    <div class="container-btn-type">
+      <button class="btn-pomodoro-a"> Pomodoro</button>
+      <button class="btn-pomodoro-b"> Pomodoro</button>
+      <button class="btn-shortBreak-a"> Descanso Corto</button>
+      <button class="btn-shortBreak-b"> Descanso Corto</button>
+      <button class="btn-longBreak-a"> Descanso Largo</button>
+      <button class="btn-longBreak-b"> Descanso Largo</button>
+    </div>
     <div class="timer">
       <svg
         width="163"
@@ -383,6 +391,48 @@ canvas {
 
 .container-btn-star-end .btn-stop-done{
   margin: 1rem 0 0 0;
+}
+
+.container-btn-type{
+  display: flex;
+}
+
+
+.container-btn-type .btn-shortBreak-b{
+  background: #fff8ee;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color:#f85959;
+}
+
+.container-btn-type .btn-pomodoro-b{
+  width: 7rem;
+  height: 3.5rem;
+  background: #fff8ee;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color:#f85959;
+}
+
+.container-btn-type .btn-longBreak-b{
+  width: 7rem;
+  height: 3.5rem;
+  background: #fff8ee;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color:#f85959;
 }
 
 </style>

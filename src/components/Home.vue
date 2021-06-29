@@ -110,12 +110,21 @@
     </div>
     <div class="container-btn-right">
         <div class="container-buttons">
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
           <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
+  <b-sidebar id="sidebar-clock" title="Clock" right shadow backdrop>
+                <div class="px-3 py-2">
+                  <p>
+                  Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+                  in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                  </p>
+                  <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
+                </div>
+  </b-sidebar>
   </div>
 </template>
 

@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div hidden class="voice">
+      <vue-speech lang="es-US" @onTranscriptionEnd="onEnd" />
+    </div>
     <div class="title">
       <h1>Pomodoro &#127813;</h1>
     </div>
@@ -143,6 +146,10 @@ export default {
         this.pauseBar();
         this.buttonText = "Continuar";
       }
+    },
+    onEnd ({ lastSentence, transcription }) {
+      console.log(lastSentence);
+      console.log(transcription)
     },
     animateBar() {
       this.reduceTime();

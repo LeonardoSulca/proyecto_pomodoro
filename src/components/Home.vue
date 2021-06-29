@@ -108,6 +108,14 @@
       <button class="btn-start-pause" @click="handleTimer" :disabled="resting">{{ buttonStarPause }}</button>
       <button class="btn-stop-done" @click="handleTimer" :disabled="resting">{{ buttonStopDone }}</button>
     </div>
+    <div class="container-btn-right">
+        <div class="container-buttons">
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -355,19 +363,7 @@ h2 {
   color: #f85959;
   text-align: center;
 }
-button {
-  margin-top: 90px;
-  width: 7rem;
-  height: 3.5rem;
-  background: #f85959;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  line-height: 45px;
-  text-align: center;
-  color: #fff8ee;
-}
+
 button:focus {
   outline: none;
 }
@@ -387,18 +383,86 @@ canvas {
 
 .container-btn-star-end .btn-start-pause{
   margin: 1rem 0 0 0;
+  width: 7rem;
+  height: 3.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
 }
 
 .container-btn-star-end .btn-stop-done{
   margin: 1rem 0 0 0;
+  width: 7rem;
+  height: 3.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
 }
 
 .container-btn-type{
   display: flex;
 }
 
+.container-btn-type .btn-pomodoro-a{
+  margin: 1rem 0 0 0;
+  width: 7rem;
+  height: 3.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
+}
+
+
+.container-btn-type .btn-shortBreak-a{
+  margin: 1rem 0 0 0;
+  width: 7rem;
+  height: 3.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
+}
+
+
+.container-btn-type .btn-longBreak-a{
+  margin: 1rem 0 0 0;
+  width: 7rem;
+  height: 3.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
+}
+
+
 
 .container-btn-type .btn-shortBreak-b{
+  margin: 1rem 0 0 0;
+  width: 7rem;
+  height: 3.5rem;
   background: #fff8ee;
   border-radius: 20px;
   border: none;
@@ -406,10 +470,11 @@ canvas {
   font-size: 1rem;
   line-height: 45px;
   text-align: center;
-  color:#f85959;
+  color: #f85959;
 }
 
 .container-btn-type .btn-pomodoro-b{
+  margin: 1rem 0 0 0;
   width: 7rem;
   height: 3.5rem;
   background: #fff8ee;
@@ -419,10 +484,11 @@ canvas {
   font-size: 1rem;
   line-height: 45px;
   text-align: center;
-  color:#f85959;
+  color: #f85959;
 }
 
 .container-btn-type .btn-longBreak-b{
+  margin: 1rem 0 0 0;
   width: 7rem;
   height: 3.5rem;
   background: #fff8ee;
@@ -432,7 +498,35 @@ canvas {
   font-size: 1rem;
   line-height: 45px;
   text-align: center;
-  color:#f85959;
+  color: #f85959;
+}
+
+
+.container-btn-right{
+  position: absolute;
+  left: 100%; /* X */
+  top: 50%; /* Y */
+  transform: translate(-100%, -65%); /* Reposicionar X,Y */
+}
+
+.container-btn-right .container-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn-icon{
+  width: 100%;
+  height: 100%;
+}
+
+.btn-ctn-icon{
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: #fff8ee;
 }
 
 </style>

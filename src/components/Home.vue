@@ -93,7 +93,10 @@
         <h2 class="number-time">{{ timeDisplay }}</h2>
       </div>
     </div>
-    <button @click="handleTimer" :disabled="resting">{{ buttonText }}</button>
+    <div class="container-btn-star-end">
+      <button class="btn-start-pause" @click="handleTimer" :disabled="resting">{{ buttonText }}</button>
+      <button class="btn-stop-done" @click="handleTimer" :disabled="resting">{{ buttonText }}</button>
+    </div>
   </div>
 </template>
 
@@ -262,7 +265,7 @@ export default {
 }
 h1 {
   color: #c44747;
-  font-size: 64px;
+  font-size: 3rem;
 }
 .timer {
   margin-top: 50px;
@@ -330,13 +333,13 @@ h2 {
 }
 button {
   margin-top: 90px;
-  width: 200px;
-  height: 68px;
+  width: 7rem;
+  height: 3.5rem;
   background: #f85959;
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  font-size: 36px;
+  font-size: 1rem;
   line-height: 45px;
   text-align: center;
   color: #fff8ee;
@@ -351,4 +354,19 @@ button:disabled {
 canvas {
   background: none;
 }
+
+.container-btn-star-end{
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
+}
+
+.container-btn-star-end .btn-start-pause{
+  margin: 1rem 0 0 0;
+}
+
+.container-btn-star-end .btn-stop-done{
+  margin: 1rem 0 0 0;
+}
+
 </style>

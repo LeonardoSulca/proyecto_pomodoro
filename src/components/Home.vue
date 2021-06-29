@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div hidden class="voice">
+      <vue-speech lang="es-US" @onTranscriptionEnd="onEnd" />
+    </div>
     <div class="title">
       <h1>Pomodoro &#127813;</h1>
     </div>
@@ -110,7 +113,7 @@ export default {
     const pomodoroDuration = 0.25 * 60; // 25 mins to secs
     return {
       pomodoroDuration,
-      restDuration: 0.1 * 60,
+      restDuration: 0.1 * 60, 
       currentTimeInSeconds: pomodoroDuration,
       currentSegment: 1,
       buttonText: "¡Iniciar!",
@@ -145,6 +148,18 @@ export default {
       } else if (this.buttonText === "Pausa") {
         this.pauseBar();
         this.buttonText = "Continuar";
+      }
+    },
+    onEnd ({ lastSentence}) {
+      console.log(lastSentence);
+      if(lastSentence.includes("iniciar") && this.buttonText === "¡Iniciar!"){
+        this.handleTimer()
+      }
+      if(lastSentence.includes("continuar") && this.buttonText === "Continuar"){
+        this.handleTimer()
+      }
+      if(lastSentence.includes("pausa") && this.buttonText === "Pausa"){
+        this.handleTimer()
       }
     },
     animateBar() {

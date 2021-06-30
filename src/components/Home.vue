@@ -231,12 +231,22 @@
     <div v-if="showSidebarMain == 'PerfilUsuario'" class="container-sidebar">
       <div class="container-perfil">
         <img class="img-perfil" src="../assets/Perfil.png" />
+        <p class="p-perfil-username"> {{user.username}} </p>
+        <p class="p-perfil-email"> {{user.email}} </p>
       </div>
-      <form @submit.prevent="agregarTarea">
+      <div class="continer-tiempo-hecho">
+        <p>Pomodoros del dia</p>
+        <input type="text" value="1" disabled>
+        <p>Pomodoros de la semana</p>
+        <input type="text" value="1" disabled>
+        <p>Pomodoros del mes</p>
+        <input type="text" value="1" disabled>
+      </div>
+<!--       <form @submit.prevent="agregarTarea">
         <p>Tarea</p>
         <input type="text" v-model="user.newTask" value="">
         <button type="submit" class="btn-agregar-tarea"> Agregar Tarea </button>
-      </form>
+      </form> -->
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
@@ -833,6 +843,34 @@ b-sidebar-body{
   width:140px;
   height:140px;
   border-radius:70px;
+}
+
+.p-perfil-username, .p-perfil-email{
+  font-size: 1rem;
+}
+
+
+.container-sidebar .continer-tiempo-hecho{
+  position: absolute;
+  width: 80%;
+  top: 300px;
+  right: 0;
+}
+
+
+.continer-tiempo-hecho p{
+  font-size: 1rem;
+}
+
+.continer-tiempo-hecho input{
+  margin: 0 0 0 10px;
+  outline: none;
+  background-color: #FBE0BA;
+  border-radius: 5%;
+  border: 0;
+  height: 2.5rem;
+  text-indent: 10px;
+  width: 80%;
 }
 
 </style>

@@ -192,13 +192,16 @@ import confetti from "canvas-confetti";
 export default {
   name: "Home",
   data: () => {
-    var pomodoroDuration = 0.25 * 60;
+    var pomodoroDuration = 10;
     return {
-      tiempoDePomodoro: 25,
-      tiempoDescansoCorto: 5,
-      tiempoDescansoLargo: 15,
-      pomodoroDuration,
-      restDuration: 0.1 * 60,
+      tiempoDescansoLargo: 5,
+      tiempoDescansoCorto: 3,
+      tiempoDePomodoro: 10,
+
+      restLargoDuration:5,
+      restCortoDuration:3,
+      pomodoroDuration:10,
+      restDuration: 3,
       currentTimeInSeconds: pomodoroDuration,
       currentSegment: 1,
       buttonStarPause: "¡Iniciar!",
@@ -231,9 +234,11 @@ export default {
   },
   methods: {
     configuracionTiempo(){
-      console.log(this.tiempoDePomodoro);
-      console.log(this.tiempoDescansoCorto);
-      console.log(this.tiempoDescansoLargo);
+      this.restLargoDuration=this.tiempoDescansoLargo;
+      this.restCortoDuration=this.tiempoDescansoCorto;
+      this.pomodoroDuration=this.tiempoDePomodoro;
+      this.pathOptions["duration"]=(parseInt(this.pomodoroDuration)+1)*1000;
+      this.currentTimeInSeconds = this.pomodoroDuration;
     },
     handleButtonPomodoro() {
       this.showTypeButtonPomodoro = true;
@@ -242,13 +247,13 @@ export default {
     },
     handleButtonShortBreak() {
       this.restDuration = this.restCortoDuration,
-      this.showTypeButtonPomodoro = false;
+      //this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = true;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
       this.restDuration = this.restLargoDuration,
-      this.showTypeButtonPomodoro = false;
+      //this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = true;
     },
@@ -263,7 +268,7 @@ export default {
     },
     handleStoper() {
       this.currentSegment = 1;
-      this.currentTimeInSeconds= 0.25 * 60;
+      this.currentTimeInSeconds= this.pomodoroDuration;
       this.topRight.set(1);
       this.topLeft.set(1);
       this.bottomRight.set(1);
@@ -312,7 +317,7 @@ export default {
       segment.animate(
         0,
         {
-          duration: (this.currentTimeInSeconds + 1) * 1000,
+          duration: (parseInt(this.currentTimeInSeconds) + 1) * 1000,
         },
         this.onFinish
       );
@@ -460,11 +465,9 @@ h1 {
 .time-display .number-time{
   font-size: 2.5rem;
 }
-
 .time-display p{
   font-size: 1.5rem;
 }
-
 p {
   font-size: 48px;
   line-height: 48px;
@@ -476,7 +479,6 @@ h2 {
   color: #f85959;
   text-align: center;
 }
-
 button:focus {
   outline: none;
 }
@@ -487,13 +489,11 @@ button:disabled {
 canvas {
   background: none;
 }
-
 .container-btn-star-end{
   display: flex;
   justify-content: space-between;
   width: 15rem;
 }
-
 .container-btn-star-end .btn-start-pause{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -507,7 +507,6 @@ canvas {
   text-align: center;
   color: #fff8ee;
 }
-
 .container-btn-star-end .btn-stop-done{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -521,11 +520,9 @@ canvas {
   text-align: center;
   color: #fff8ee;
 }
-
 .container-btn-type{
   display: flex;
 }
-
 .container-btn-type .btn-pomodoro-a{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -539,8 +536,6 @@ canvas {
   text-align: center;
   color: #fff8ee;
 }
-
-
 .container-btn-type .btn-shortBreak-a{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -554,8 +549,6 @@ canvas {
   text-align: center;
   color: #fff8ee;
 }
-
-
 .container-btn-type .btn-longBreak-a{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -569,9 +562,6 @@ canvas {
   text-align: center;
   color: #fff8ee;
 }
-
-
-
 .container-btn-type .btn-shortBreak-b{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -585,7 +575,6 @@ canvas {
   text-align: center;
   color: #f85959;
 }
-
 .container-btn-type .btn-pomodoro-b{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -599,7 +588,6 @@ canvas {
   text-align: center;
   color: #f85959;
 }
-
 .container-btn-type .btn-longBreak-b{
   margin: 1rem 0 0 0;
   width: 7rem;
@@ -613,15 +601,12 @@ canvas {
   text-align: center;
   color: #f85959;
 }
-
-
 .container-btn-right{
   position: absolute;
   left: 100%; /* X */
   top: 50%; /* Y */
   transform: translate(-100%, -65%); /* Reposicionar X,Y */
 }
-
 .container-btn-right .container-buttons{
   display: flex;
   flex-direction: column;
@@ -629,51 +614,41 @@ canvas {
   justify-content: center;
   align-content: center;
 }
-
 .btn-icon{
   width: 100%;
   height: 100%;
 }
-
 .btn-ctn-icon{
   width: 50px;
   height: 50px;
   border: none;
   background-color: #fff8ee;
 }
-
 .sidebar{
   background: #fff8ee;
 }
-
 .b-sidebar-header{
   background-color: #fff8ee;
 }
-
 b-sidebar-body{
   background-color: #fff8ee;
 }
-
 .container-sidebar{
   background-color: #fff8ee;
   width: 100%;
   height: 100%;
 }
-
 .container-sidebar form{
   position: absolute;
   width: 80%;
   right: 0;
 }
-
 .container-sidebar form p{
   font-size: 1.5rem;
   text-align: start;
   line-height: 24px;
   margin-top: 10px;
 }
-
-
 .container-sidebar form input{
   outline: none;
   background-color: #FBE0BA;
@@ -683,9 +658,7 @@ b-sidebar-body{
   text-indent: 10px;
   width: 85%;
 }
-
 /* FBE0BA */
-
 .btn-confg-time{
   margin: 1.5rem 0 0 8.5rem;
   width: 5rem;
@@ -699,15 +672,12 @@ b-sidebar-body{
   text-align: center;
   color: #fff8ee;
 }
-
-
 .container-btn-left{
   position: absolute;
   left: 0; /* X */
   top: 50%; /* Y */
   transform: translate(0, -65%); /* Reposicionar X,Y */
 }
-
 .container-btn-left .container-buttons{
   display: flex;
   flex-direction: column;
@@ -715,7 +685,6 @@ b-sidebar-body{
   justify-content: center;
   align-content: center;
 }
-
 .bnt-login-signup{
   position: absolute;
   width: 80%;
@@ -726,7 +695,6 @@ b-sidebar-body{
   justify-content: center;
   align-items: center;
 }
-
 .bnt-login-signup button{
   margin: 1rem 1rem 1rem 1rem;
   width: 5rem;
@@ -740,20 +708,16 @@ b-sidebar-body{
   text-align: center;
   color: #fff8ee;
 }
-
-
 .sd-container-info{
   position: absolute;
   width: 80%;
   height: 100%;
   right: 0;
 }
-
 .sd-container-info p{
   font-size: 1rem;
   text-align: start;
   line-height: 16px;
   margin-top: 10px;
 }
-
 </style>

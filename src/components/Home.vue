@@ -106,7 +106,7 @@
     </div>
     <div class="container-btn-star-end">
       <button class="btn-start-pause" @click="handleTimer" :disabled="resting">{{ buttonStarPause }}</button>
-      <button class="btn-stop-done" @click="handleTimer" :disabled="resting">{{ buttonStopDone }}</button>
+      <button class="btn-stop-done" @click="handleStoper" :disabled="resting">{{ buttonStopDone }}</button>
     </div>
     <div class="container-btn-right">
         <div class="container-buttons">
@@ -192,7 +192,7 @@ import confetti from "canvas-confetti";
 export default {
   name: "Home",
   data: () => {
-    const pomodoroDuration = 0.25 * 60; // 25 mins to secs
+    var pomodoroDuration = 0.25 * 60;
     return {
       tiempoDePomodoro: 25,
       tiempoDescansoCorto: 5,
@@ -205,7 +205,7 @@ export default {
       buttonStopDone: "¡Parar!",
       showTypeButtonPomodoro: true,
       showTypeButtonLongBreak: false,
-      showTypeButtonShortBreak: false,
+      showTypeButtonShortBreak: true,
       topRight: null,
       bottomRight: null,
       bottomLeft: null,
@@ -241,11 +241,13 @@ export default {
       this.showTypeButtonLongBreak = false;
     },
     handleButtonShortBreak() {
+      this.restDuration = this.restCortoDuration,
       this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = true;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
+      this.restDuration = this.restLargoDuration,
       this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = true;
@@ -259,6 +261,16 @@ export default {
         this.buttonStarPause = "Continuar";
       }
     },
+    handleStoper() {
+      this.currentSegment = 1;
+      this.currentTimeInSeconds= 0.25 * 60;
+      this.topRight.set(1);
+      this.topLeft.set(1);
+      this.bottomRight.set(1);
+      this.bottomLeft.set(1);
+      this.buttonStarPause = "¡Iniciar!"
+      this.pauseBar();
+    },
     onEnd ({ lastSentence}) {
       console.log(lastSentence);
       if(lastSentence.includes("iniciar") && this.buttonStarPause === "¡Iniciar!"){
@@ -269,6 +281,15 @@ export default {
       }
       if(lastSentence.includes("pausa") && this.buttonStarPause === "Pausa"){
         this.handleTimer()
+      }
+      if(lastSentence.includes("pomodoro")){
+        this.handleButtonPomodoro()
+      }
+      if(lastSentence.includes("descanso corto")){
+        this.handleButtonShortBreak()
+      }
+      if(lastSentence.includes("descanso largo")){
+        this.handleButtonLongBreak()
       }
     },
     animateBar() {

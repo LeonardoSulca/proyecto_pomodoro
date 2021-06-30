@@ -140,8 +140,8 @@
     </div>
     <div v-if="showSidebarMain == 'sdLoginSignup'" class="container-sidebar">
       <div  class="bnt-login-signup">
-        <button> Registraste </button>
-        <button> Ingresar </button>
+        <button @click="showSidebarMain='SideFormularioRegistro'"> Registraste </button>
+        <button @click="showSidebarMain='SideFormLogin'" > Ingresar </button>
       </div>
       <div class="container-btn-left">
         <div class="container-buttons">
@@ -178,9 +178,65 @@
     <div v-if="showSidebarMain == 'sdLogout'" class="container-sidebar">
       <div  class="bnt-login-signup">
         <p class="p-logout">Todavia no ha iniciado sesión</p>
-        <button> Registraste </button>
-        <button> Ingresar </button>
+        <button @click="showSidebarMain='SideFormularioRegistro'"> Registraste </button>
+        <button @click="showSidebarMain='SideFormLogin'" > Ingresar </button>
       </div>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
+    <div v-if="showSidebarMain == 'SideFormularioRegistro'" class="container-sidebar">
+      <form @submit.prevent="registrarUsuario">
+        <p>Nombre de usuario</p>
+        <input type="text" v-model="user.username" value="">
+        <p>Correo electronico</p>
+        <input type="email" v-model="user.email" value="">
+        <p>Constraseña</p>
+        <input type="password" v-model="user.password" value="">
+        <p>Confirmación</p>
+        <input type="password" v-model="confirmPassword" value="">
+        <button type="submit" class="btn-confg-time"> Registraste </button>
+      </form>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
+    <div v-if="showSidebarMain == 'SideFormLogin'" class="container-sidebar">
+      <form @submit.prevent="loginUsuario">
+        <p>Nombre de usuario</p>
+        <input type="text" v-model="user.username" value="">
+        <p>Constraseña</p>
+        <input type="password" v-model="user.password" value="">
+        <button type="submit" class="btn-confg-time"> Ingresar </button>
+      </form>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
+    <div v-if="showSidebarMain == 'PerfilUsuario'" class="container-sidebar">
+      <div class="container-perfil">
+        <img class="img-perfil" src="../assets/Perfil.png" />
+      </div>
+      <form @submit.prevent="agregarTarea">
+        <p>Tarea</p>
+        <input type="text" v-model="user.newTask" value="">
+        <button type="submit" class="btn-agregar-tarea"> Agregar Tarea </button>
+      </form>
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
@@ -203,6 +259,13 @@ export default {
   data: () => {
     var pomodoroDuration = 10;
     return {
+      user: {
+        username:'',
+        email: '',
+        password: '',
+        newTask: '',
+      },
+      confirmPassword: '',
       tiempoDescansoLargo: 5,
       tiempoDescansoCorto: 3,
       tiempoDePomodoro: 10,
@@ -242,6 +305,17 @@ export default {
     this.topLeft.set(1);
   },
   methods: {
+    agregarTarea() {
+      console.log(this.user.newTask)
+    },
+    loginUsuario() {
+      console.log(this.user);
+      this.showSidebarMain = 'PerfilUsuario'
+    },
+    registrarUsuario(){
+      console.log(this.user);
+      this.showSidebarMain = 'PerfilUsuario'
+    },
     configuracionTiempo(){
       this.restLargoDuration=this.tiempoDescansoLargo;
       this.restCortoDuration=this.tiempoDescansoCorto;
@@ -730,24 +804,35 @@ b-sidebar-body{
   margin-top: 10px;
 }
 
-/* .container-sidebar p{
-  font-size: 1.5rem;
+.p-logout{
+  font-size: 1rem;
 }
 
-.sd-salir .container-sidebar .bnt-login-signup{
-  position: absolute;
-  width: 80%;
-  height: 30%;
-  top: 10rem;
-  right: 0;
+.btn-agregar-tarea{
+  margin: 1.5rem 0 0 4rem;
+  width: 10rem;
+  height: 2.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
+}
+
+.container-perfil{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-} */
+}
 
-.p-logout{
-  font-size: 1rem;
+.img-perfil{
+  width:140px;
+  height:140px;
+  border-radius:70px;
 }
 
 </style>

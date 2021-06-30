@@ -113,7 +113,7 @@
           <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
           <button v-b-toggle.sidebar-2 class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button v-b-toggle.sidebar-info class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
-          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+          <button v-b-toggle.sidebar-salir class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
   <b-sidebar id="sidebar-clock" class="sidebar sd-clock"
@@ -182,6 +182,24 @@
       </div>
     </div>
   </b-sidebar>
+  <b-sidebar id="sidebar-salir" class="sidebar sd-salir"
+             title="Salir" width="20em" right shadow backdrop>
+    <div class="container-sidebar">
+      <div class="bnt-login-signup">
+        <p>Todavia no ha iniciado sesión</p>
+        <button> Registraste </button>
+        <button> Ingresar </button>
+      </div>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
+  </b-sidebar>
   </div>
 </template>
 
@@ -208,7 +226,7 @@ export default {
       buttonStopDone: "¡Parar!",
       showTypeButtonPomodoro: true,
       showTypeButtonLongBreak: false,
-      showTypeButtonShortBreak: true,
+      showTypeButtonShortBreak: false,
       topRight: null,
       bottomRight: null,
       bottomLeft: null,
@@ -247,13 +265,13 @@ export default {
     },
     handleButtonShortBreak() {
       this.restDuration = this.restCortoDuration,
-      //this.showTypeButtonPomodoro = false;
+      this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = true;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
       this.restDuration = this.restLargoDuration,
-      //this.showTypeButtonPomodoro = false;
+      this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = true;
     },
@@ -720,4 +738,21 @@ b-sidebar-body{
   line-height: 16px;
   margin-top: 10px;
 }
+
+.sd-salir .container-sidebar p{
+  font-size: 1.5rem;
+}
+
+.sd-salir .container-sidebar .bnt-login-signup{
+  position: absolute;
+  width: 80%;
+  height: 30%;
+  top: 10rem;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>

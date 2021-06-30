@@ -111,24 +111,67 @@
     <div class="container-btn-right">
         <div class="container-buttons">
           <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button v-b-toggle.sidebar-2 class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button v-b-toggle.sidebar-info class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
   <b-sidebar id="sidebar-clock" class="sidebar sd-clock"
              title="Configurar tiempo" width="20em" right shadow backdrop>
     <div class="container-sidebar">
-      <form>
+      <form @submit.prevent="configuracionTiempo">
         <p>Tiempo (minutos) </p>
         <p>Pomodoro</p>
-        <input type="number" value="25">
+        <input type="number" v-model="tiempoDePomodoro" value="tiempoDePomodoro">
         <p>Descanso Corto</p>
-        <input type="number" value="5">
+        <input type="number" v-model="tiempoDescansoCorto" value="tiempoDescansoCorto">
         <p>Descanso Largo</p>
-        <input type="number" value="15">
-        <button class="btn-confg-time"> Aceptar </button>
+        <input type="number" v-model="tiempoDescansoLargo" value="tiempoDescansoLargo">
+        <button type="submit" class="btn-confg-time"> Aceptar </button>
       </form>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button v-b-toggle.sidebar-2 class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
+  </b-sidebar>
+  <b-sidebar id="sidebar-2" class="sidebar sd-2"
+             title="Pomodoro" width="20em" right shadow backdrop>
+    <div class="container-sidebar">
+      <div class="bnt-login-signup">
+        <button> Registraste </button>
+        <button> Ingresar </button>
+      </div>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
+  </b-sidebar>
+  <b-sidebar id="sidebar-info" class="sidebar sd-info"
+             title="Acerda de nosotros" width="20em" right shadow backdrop>
+    <div class="container-sidebar">
+      <div class="sd-container-info">
+        <p>>Hola</p>
+        <p>Bienvenido a pomodoro</p>
+        <p>Aquí encontrará una guía sencilla para usar pomodoro.</p>
+        <p>Elija una tarea que le gustaría realizar. Inicie el temporizador durante 25 minutos (25 minutos es la técnica Pomodoro tradicional, 
+          pero puede configurar el temporizador para lo que funcione para usted). </p>
+        <p>Trabaja enfocado en esa tarea hasta que suene el reloj.  Después de eso, tómate un breve descanso. </p>
+        <p>Después de 4 pomodoros recomendamos un descanso más largo.</p>
+        <p>Repita hasta que haya terminado. </p>
+        <p>¡Estupendo! </p>
+        <p>¡Eso es todo lo que necesita saber para</p>
+        <p>realizar actividades más productivas!</p>
+      </div>
       <div class="container-btn-left">
         <div class="container-buttons">
           <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
@@ -151,8 +194,11 @@ export default {
   data: () => {
     const pomodoroDuration = 0.25 * 60; // 25 mins to secs
     return {
+      tiempoDePomodoro: 25,
+      tiempoDescansoCorto: 5,
+      tiempoDescansoLargo: 15,
       pomodoroDuration,
-      restDuration: 0.1 * 60, 
+      restDuration: 0.1 * 60,
       currentTimeInSeconds: pomodoroDuration,
       currentSegment: 1,
       buttonStarPause: "¡Iniciar!",
@@ -184,6 +230,11 @@ export default {
     this.topLeft.set(1);
   },
   methods: {
+    configuracionTiempo(){
+      console.log(this.tiempoDePomodoro);
+      console.log(this.tiempoDescansoCorto);
+      console.log(this.tiempoDescansoLargo);
+    },
     handleButtonPomodoro() {
       this.showTypeButtonPomodoro = true;
       this.showTypeButtonShortBreak = false;
@@ -642,6 +693,46 @@ b-sidebar-body{
   align-items: center;
   justify-content: center;
   align-content: center;
+}
+
+.bnt-login-signup{
+  position: absolute;
+  width: 80%;
+  height: 75%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bnt-login-signup button{
+  margin: 1rem 1rem 1rem 1rem;
+  width: 5rem;
+  height: 2.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
+}
+
+
+.sd-container-info{
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 0;
+}
+
+.sd-container-info p{
+  font-size: 1rem;
+  text-align: start;
+  line-height: 16px;
+  margin-top: 10px;
 }
 
 </style>

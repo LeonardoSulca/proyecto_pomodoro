@@ -116,14 +116,28 @@
           <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
-  <b-sidebar id="sidebar-clock" title="Clock" right shadow backdrop>
-                <div class="px-3 py-2">
-                  <p>
-                  Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                  in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                  </p>
-                  <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
-                </div>
+  <b-sidebar id="sidebar-clock" class="sidebar sd-clock"
+             title="Configurar tiempo" width="20em" right shadow backdrop>
+    <div class="container-sidebar">
+      <form>
+        <p>Tiempo (minutos) </p>
+        <p>Pomodoro</p>
+        <input type="number" value="25">
+        <p>Descanso Corto</p>
+        <input type="number" value="5">
+        <p>Descanso Largo</p>
+        <input type="number" value="15">
+        <button class="btn-confg-time"> Aceptar </button>
+      </form>
+      <div class="container-btn-left">
+        <div class="container-buttons">
+          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+        </div>
+      </div>
+    </div>
   </b-sidebar>
   </div>
 </template>
@@ -554,6 +568,80 @@ canvas {
   height: 50px;
   border: none;
   background-color: #fff8ee;
+}
+
+.sidebar{
+  background: #fff8ee;
+}
+
+.b-sidebar-header{
+  background-color: #fff8ee;
+}
+
+b-sidebar-body{
+  background-color: #fff8ee;
+}
+
+.container-sidebar{
+  background-color: #fff8ee;
+  width: 100%;
+  height: 100%;
+}
+
+.container-sidebar form{
+  position: absolute;
+  width: 80%;
+  right: 0;
+}
+
+.container-sidebar form p{
+  font-size: 1.5rem;
+  text-align: start;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+
+.container-sidebar form input{
+  outline: none;
+  background-color: #FBE0BA;
+  border-radius: 5%;
+  border: 0;
+  height: 2.5rem;
+  text-indent: 10px;
+  width: 85%;
+}
+
+/* FBE0BA */
+
+.btn-confg-time{
+  margin: 1.5rem 0 0 8.5rem;
+  width: 5rem;
+  height: 2.5rem;
+  background: #f85959;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 45px;
+  text-align: center;
+  color: #fff8ee;
+}
+
+
+.container-btn-left{
+  position: absolute;
+  left: 0; /* X */
+  top: 50%; /* Y */
+  transform: translate(0, -65%); /* Reposicionar X,Y */
+}
+
+.container-btn-left .container-buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 </style>

@@ -110,15 +110,15 @@
     </div>
     <div class="container-btn-right">
         <div class="container-buttons">
-          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button v-b-toggle.sidebar-2 class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
-          <button v-b-toggle.sidebar-info class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
-          <button v-b-toggle.sidebar-salir class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+          <button v-b-toggle.sidebar  @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button v-b-toggle.sidebar  @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button v-b-toggle.sidebar @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button v-b-toggle.sidebar @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
-  <b-sidebar id="sidebar-clock" class="sidebar sd-clock"
+  <b-sidebar id="sidebar" class="sidebar sd-clock"
              title="Configurar tiempo" width="20em" right shadow backdrop>
-    <div class="container-sidebar">
+    <div v-if="showSidebarMain == 'sdConfClock'" class="container-sidebar">
       <form @submit.prevent="configuracionTiempo">
         <p>Tiempo (minutos) </p>
         <p>Pomodoro</p>
@@ -131,35 +131,29 @@
       </form>
       <div class="container-btn-left">
         <div class="container-buttons">
-          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button v-b-toggle.sidebar-2 class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
-          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
     </div>
-  </b-sidebar>
-  <b-sidebar id="sidebar-2" class="sidebar sd-2"
-             title="Pomodoro" width="20em" right shadow backdrop>
-    <div class="container-sidebar">
-      <div class="bnt-login-signup">
+    <div v-if="showSidebarMain == 'sdLoginSignup'" class="container-sidebar">
+      <div  class="bnt-login-signup">
         <button> Registraste </button>
         <button> Ingresar </button>
       </div>
       <div class="container-btn-left">
         <div class="container-buttons">
-          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
-          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
     </div>
-  </b-sidebar>
-  <b-sidebar id="sidebar-info" class="sidebar sd-info"
-             title="Acerda de nosotros" width="20em" right shadow backdrop>
-    <div class="container-sidebar">
-      <div class="sd-container-info">
+    <div v-if="showSidebarMain == 'sdInfo'" class="container-sidebar">
+      <div  class="sd-container-info">
         <p>>Hola</p>
         <p>Bienvenido a pomodoro</p>
         <p>Aquí encontrará una guía sencilla para usar pomodoro.</p>
@@ -174,28 +168,25 @@
       </div>
       <div class="container-btn-left">
         <div class="container-buttons">
-          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
-          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
     </div>
-  </b-sidebar>
-  <b-sidebar id="sidebar-salir" class="sidebar sd-salir"
-             title="Salir" width="20em" right shadow backdrop>
-    <div class="container-sidebar">
-      <div class="bnt-login-signup">
-        <p>Todavia no ha iniciado sesión</p>
+    <div v-if="showSidebarMain == 'sdLogout'" class="container-sidebar">
+      <div  class="bnt-login-signup">
+        <p class="p-logout">Todavia no ha iniciado sesión</p>
         <button> Registraste </button>
         <button> Ingresar </button>
       </div>
       <div class="container-btn-left">
         <div class="container-buttons">
-          <button v-b-toggle.sidebar-clock class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
-          <button class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
-          <button class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
+          <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
+          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
+          <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
       </div>
     </div>
@@ -215,7 +206,7 @@ export default {
       tiempoDescansoLargo: 5,
       tiempoDescansoCorto: 3,
       tiempoDePomodoro: 10,
-
+      showSidebarMain: '',
       restLargoDuration:5,
       restCortoDuration:3,
       pomodoroDuration:10,
@@ -739,7 +730,7 @@ b-sidebar-body{
   margin-top: 10px;
 }
 
-.sd-salir .container-sidebar p{
+/* .container-sidebar p{
   font-size: 1.5rem;
 }
 
@@ -753,6 +744,10 @@ b-sidebar-body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+} */
+
+.p-logout{
+  font-size: 1rem;
 }
 
 </style>

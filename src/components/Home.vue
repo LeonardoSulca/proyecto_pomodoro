@@ -119,7 +119,7 @@
   <b-sidebar id="sidebar-clock" class="sidebar sd-clock"
              title="Configurar tiempo" width="20em" right shadow backdrop>
     <div class="container-sidebar">
-      <form>
+      <form name="ConfigForm"> 
         <p>Tiempo (minutos) </p>
         <p>Pomodoro</p>
         <input type="number" value="25">
@@ -149,10 +149,12 @@ import confetti from "canvas-confetti";
 export default {
   name: "Home",
   data: () => {
-    const pomodoroDuration = 0.25 * 60; // 25 mins to secs
+    var pomodoroDuration = 0.25 * 60;
     return {
-      pomodoroDuration,
-      restDuration: 0.1 * 60, 
+      pomodoroDuration: 0.25 * 60,
+      restLargoDuration: 0.25 * 60,
+      restCortoDuration: 0.01 * 60,
+      restDuration:0.01 * 60, 
       currentTimeInSeconds: pomodoroDuration,
       currentSegment: 1,
       buttonStarPause: "¡Iniciar!",
@@ -190,13 +192,13 @@ export default {
       this.showTypeButtonLongBreak = false;
     },
     handleButtonShortBreak() {
-      this.restDuration = 0.1 * 60,
+      this.restDuration = this.restCortoDuration,
       this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = true;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
-      this.restDuration = 0.3 * 60,
+      this.restDuration = this.restLargoDuration,
       this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = true;

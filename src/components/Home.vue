@@ -280,7 +280,7 @@ export default {
       buttonStopDone: "¡Parar!",
       showTypeButtonPomodoro: true,
       showTypeButtonLongBreak: false,
-      showTypeButtonShortBreak: false,
+      showTypeButtonShortBreak: true,
       topRight: null,
       bottomRight: null,
       bottomLeft: null,
@@ -330,13 +330,13 @@ export default {
     },
     handleButtonShortBreak() {
       this.restDuration = this.restCortoDuration,
-      this.showTypeButtonPomodoro = false;
+      //this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = true;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
       this.restDuration = this.restLargoDuration,
-      this.showTypeButtonPomodoro = false;
+      //this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = true;
     },
@@ -369,6 +369,9 @@ export default {
       }
       if(lastSentence.includes("pausa") && this.buttonStarPause === "Pausa"){
         this.handleTimer()
+      }
+      if(lastSentence.includes("parar")){
+        this.handleStoper()
       }
       if(lastSentence.includes("pomodoro")){
         this.handleButtonPomodoro()

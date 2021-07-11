@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app-container"> 
     <Home />
   </div>
 </template>
@@ -28,5 +28,14 @@ export default {
 
 #app {
   background: #fff8ee;
+}
+
+.app-container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 </style>

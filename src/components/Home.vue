@@ -213,9 +213,9 @@
     </div>
     <div v-if="showSidebarMain == 'SideFormLogin'" class="container-sidebar">
       <form @submit.prevent="loginUsuario">
-        <p>Nombre de usuario</p>
-        <input type="text" v-model="user.username" value="">
-        <p>Constraseña</p>
+        <p>Email</p>
+        <input type="email" v-model="user.email" value="">
+        <p>Contraseña</p>
         <input type="password" v-model="user.password" value="">
         <button type="submit" class="btn-confg-time"> Ingresar </button>
       </form>
@@ -261,10 +261,14 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import ProgressBar from "progressbar.js";
 import beep from "../assets/beep.mp3";
 import confetti from "canvas-confetti";
 export default {
+  created(){
+    //console.log("Created")
+  },
   name: "Home",
   data: () => {
     var pomodoroDuration = 10;
@@ -273,7 +277,13 @@ export default {
         username:'',
         email: '',
         password: '',
-        newTask: '',
+        // newTask: '',
+      },
+      user2: {
+        username:'',
+        email: '',
+        password: '',
+        // newTask: '',
       },
       confirmPassword: '',
       tiempoDescansoLargo: 5,
@@ -315,15 +325,32 @@ export default {
     this.topLeft.set(1);
   },
   methods: {
+    pruebaCargarDatosFirebase(){
+      firebase.database().ref('/usuarios').set({name: "Usuario1"})
+    },
     agregarTarea() {
       console.log(this.user.newTask)
     },
+    traerDatos(){
+      var ref = firebase.database().ref("/usuarios");
+      ref.orderByChild("email").equalTo(this.user.email).on("child_added", snapshot => this.manejoData(snapshot.val()))
+
+    },
+    manejoData(data){
+      if (this.user.password == data.password){
+          this.user.username = data.username;
+          this.showSidebarMain = 'PerfilUsuario'
+      }
+      else {
+        console.log("Contraseña incorrecta")
+      }
+    },
     loginUsuario() {
-      console.log(this.user);
-      this.showSidebarMain = 'PerfilUsuario'
+      this.traerDatos();
+      console.log("Sigue despues de traer datos");
     },
     registrarUsuario(){
-      console.log(this.user);
+      firebase.database().ref('/usuarios').push().set(this.user)
       this.showSidebarMain = 'PerfilUsuario'
     },
     configuracionTiempo(){

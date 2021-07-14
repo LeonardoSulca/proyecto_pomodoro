@@ -398,25 +398,22 @@ export default {
     },
     onEnd ({ lastSentence}) {
       console.log(lastSentence);
-      if(lastSentence.includes("iniciar") && this.buttonStarPause === "¡Iniciar!"){
+      if(lastSentence.includes("pomodoro iniciar") && this.buttonStarPause === "¡Iniciar!"){
         this.handleTimer()
       }
-      if(lastSentence.includes("continuar") && this.buttonStarPause === "Continuar"){
+      if(lastSentence.includes("pomodoro continuar") && this.buttonStarPause === "Continuar"){
         this.handleTimer()
       }
-      if(lastSentence.includes("pausa") && this.buttonStarPause === "Pausa"){
+      if(lastSentence.includes("pomodoro pausa") && this.buttonStarPause === "Pausa"){
         this.handleTimer()
       }
-      if(lastSentence.includes("parar")){
+      if(lastSentence.includes("pomodoro parar")){
         this.handleStoper()
       }
-      if(lastSentence.includes("pomodoro")){
-        this.handleButtonPomodoro()
-      }
-      if(lastSentence.includes("descanso corto")){
+      if(lastSentence.includes("pomodoro descanso corto")){
         this.handleButtonShortBreak()
       }
-      if(lastSentence.includes("descanso largo")){
+      if(lastSentence.includes("pomodoro descanso largo")){
         this.handleButtonLongBreak()
       }
     },

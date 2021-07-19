@@ -111,7 +111,7 @@
     <div class="container-btn-right">
         <div class="container-buttons">
           <button v-b-toggle.sidebar  @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button v-b-toggle.sidebar  @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button v-b-toggle.sidebar  @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button v-b-toggle.sidebar @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button v-b-toggle.sidebar @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -132,7 +132,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -146,7 +146,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -169,7 +169,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -184,7 +184,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -205,7 +205,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -222,7 +222,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -250,7 +250,7 @@
       <div class="container-btn-left">
         <div class="container-buttons">
           <button @click="showSidebarMain='sdConfClock'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="clock"/></button>
-          <button @click="showSidebarMain='sdLoginSignup'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
+          <button @click=isLogin() class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="user"/></button>
           <button @click="showSidebarMain='sdInfo'" class="btn-ctn-icon"><font-awesome-icon class="btn-icon" icon="info-circle"/></button>
           <button @click="showSidebarMain='sdLogout'" class="btn-ctn-icon"> <font-awesome-icon class="btn-icon" icon="sign-out-alt"/></button>
         </div>
@@ -274,6 +274,7 @@ export default {
   data: () => {
     var pomodoroDuration = 10;
     return {
+      session: false,
       user: {
         username:'',
         email: '',
@@ -326,6 +327,14 @@ export default {
     this.topLeft.set(1);
   },
   methods: {
+    isLogin(){
+      if (this.session){
+        this.showSidebarMain = 'PerfilUsuario';
+      }
+      if (!this.session){
+        this.showSidebarMain = 'sdLoginSignup';
+      }
+    },
     pruebaCargarDatosFirebase(){
       firebase.database().ref('/usuarios').set({name: "Usuario1"})
     },
@@ -337,10 +346,11 @@ export default {
       ref.orderByChild("email").equalTo(this.user.email).on("child_added", snapshot => this.manejoData(snapshot.val()))
 
     },
-    manejoData(data){ 
+    manejoData(data){
       if (bcryptjs.compareSync(this.user.password, data.password)){
           this.user.username = data.username;
-          this.showSidebarMain = 'PerfilUsuario'
+          this.session = true;
+          this.showSidebarMain = 'PerfilUsuario';
       }
       else {
         console.log("Contraseña incorrecta")
@@ -359,6 +369,7 @@ export default {
       };
       console.log(hasheduser)
       firebase.database().ref('/usuarios').push().set(hasheduser)
+      this.session = true;
       this.showSidebarMain = 'PerfilUsuario'
     },
     configuracionTiempo(){

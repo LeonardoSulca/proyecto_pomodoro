@@ -337,8 +337,8 @@ export default {
       ref.orderByChild("email").equalTo(this.user.email).on("child_added", snapshot => this.manejoData(snapshot.val()))
 
     },
-    manejoData(data){
-      if (this.user.password == data.password){
+    manejoData(data){ 
+      if (bcryptjs.compareSync(this.user.password, data.password)){
           this.user.username = data.username;
           this.showSidebarMain = 'PerfilUsuario'
       }
@@ -351,7 +351,14 @@ export default {
       console.log("Sigue despues de traer datos");
     },
     registrarUsuario(){
-      firebase.database().ref('/usuarios').push().set(this.user)
+      var salt = bcryptjs.genSaltSync(10);
+      var hasheduser = {
+        username: this.user.username,
+        email: this.user.email,
+        password: bcryptjs.hashSync(this.user.password, salt),
+      };
+      console.log(hasheduser)
+      firebase.database().ref('/usuarios').push().set(hasheduser)
       this.showSidebarMain = 'PerfilUsuario'
     },
     configuracionTiempo(){
@@ -380,15 +387,6 @@ export default {
     },
     handleTimer() {
       if (this.buttonStarPause === "¡Iniciar!" || this.buttonStarPause === "Continuar") {
-        
-        var salt = bcryptjs.genSaltSync(10);
-        var hash = bcryptjs.hashSync("Bacon", salt);
-        console.log(hash)
-        var test1 = bcryptjs.compareSync("Bacon", hash); // true
-        var test2 = bcryptjs.compareSync("not_Bacon", hash); // false
-        console.log(test1)
-        console.log(test2)
-
         this.animateBar();
         this.buttonStarPause = "Pausa";
       } else if (this.buttonStarPause === "Pausa") {

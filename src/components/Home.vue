@@ -314,7 +314,7 @@ export default {
       buttonStopDone: "¡Parar!",
       showTypeButtonPomodoro: true,
       showTypeButtonLongBreak: false,
-      showTypeButtonShortBreak: true,
+      showTypeButtonShortBreak: false,
       topRight: null,
       bottomRight: null,
       bottomLeft: null,
@@ -413,19 +413,22 @@ export default {
       this.currentTimeInSeconds = this.pomodoroDuration;
     },
     handleButtonPomodoro() {
+      this.handleStoper();
       this.showTypeButtonPomodoro = true;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonShortBreak() {
       this.restDuration = this.restCortoDuration,
-      //this.showTypeButtonPomodoro = false;
+      this.buttonRest();
+      this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = true;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
       this.restDuration = this.restLargoDuration,
-      //this.showTypeButtonPomodoro = false;
+      this.buttonRest();
+      this.showTypeButtonPomodoro = false;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = true;
     },
@@ -458,6 +461,9 @@ export default {
       }
       if(lastSentence.includes("pomodoro pausa") && this.buttonStarPause === "Pausa"){
         this.handleTimer()
+      }
+      if(lastSentence.includes("pomodoro pomodoro")){
+        this.handleButtonPomodoro()
       }
       if(lastSentence.includes("pomodoro parar")){
         this.handleStoper()
@@ -511,6 +517,16 @@ export default {
           break;
       }
     },
+    buttonRest(){
+        this.resting = true;
+        this.buttonStarPause = "Descanso";
+        setTimeout(() => {
+          // Change time to reflect rest duration
+          this.currentTimeInSeconds = this.restDuration;
+          // Start rest after beep ends
+          this.startRest();
+        }, 0);
+    },
     onFinish() {
       if (this.currentTimeInSeconds <= 0) {
         // When finish, we want it to beep for a few seconds then only start rest timer
@@ -558,6 +574,9 @@ export default {
         clearInterval(this.interval);
         this.beepAudio.play();
         this.currentTimeInSeconds = this.pomodoroDuration;
+        this.showTypeButtonPomodoro = true;
+        this.showTypeButtonShortBreak = false;
+        this.showTypeButtonLongBreak = false;
         this.buttonStarPause = "¡Iniciar!";
         this.resting = false;
       }, this.restDuration * 1000);

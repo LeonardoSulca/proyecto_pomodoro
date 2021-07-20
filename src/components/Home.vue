@@ -324,6 +324,7 @@ export default {
         duration: (pomodoroDuration + 1) * 1000, // add a sec and convert to millis
       },
       interval: null,
+      timeout: null,
       beepAudio: new Audio(beep),
       resting: false,
     };
@@ -413,6 +414,8 @@ export default {
       this.currentTimeInSeconds = this.pomodoroDuration;
     },
     handleButtonPomodoro() {
+      clearInterval(this.interval);
+      clearTimeout(this.timeout);
       this.buttonStarPause = "¡Iniciar!";
       this.resting = false;
       this.handleStoper();
@@ -574,7 +577,7 @@ export default {
     startRest() {
       // Set new interval
       this.reduceTime();
-      setTimeout(() => {
+      this.timeout = setTimeout(() => {
         clearInterval(this.interval);
         this.beepAudio.play();
         this.currentTimeInSeconds = this.pomodoroDuration;

@@ -403,22 +403,25 @@ export default {
       this.showSidebarMain = 'PerfilUsuario'
     },
     configuracionTiempo(){
-      this.restLargoDuration=this.tiempoDescansoLargo;
-      this.user.pomodoro = this.tiempoDescansoLargo;
-      this.restCortoDuration = this.tiempoDescansoCorto;
-      this.user.breakShor = this.tiempoDescansoCorto;
-      this.pomodoroDuration = this.tiempoDePomodoro;
-      this.user.breakLong = this.tiempoDescansoLargo;
+      this.restLargoDuration=this.tiempoDescansoLargo*60;
+      this.user.pomodoro = this.tiempoDescansoLargo*60;
+      this.restCortoDuration = this.tiempoDescansoCorto*60;
+      this.user.breakShor = this.tiempoDescansoCorto*60;
+      this.pomodoroDuration = this.tiempoDePomodoro*60;
+      this.user.breakLong = this.tiempoDescansoLargo*60;
       this.pathOptions["duration"]=(parseInt(this.pomodoroDuration)+1)*1000;
       this.currentTimeInSeconds = this.pomodoroDuration;
     },
     handleButtonPomodoro() {
+      this.buttonStarPause = "¡Iniciar!";
+      this.resting = false;
       this.handleStoper();
       this.showTypeButtonPomodoro = true;
       this.showTypeButtonShortBreak = false;
       this.showTypeButtonLongBreak = false;
     },
     handleButtonShortBreak() {
+      this.handleStoper();
       this.restDuration = this.restCortoDuration,
       this.buttonRest();
       this.showTypeButtonPomodoro = false;
@@ -426,6 +429,7 @@ export default {
       this.showTypeButtonLongBreak = false;
     },
     handleButtonLongBreak() {
+      this.handleStoper();
       this.restDuration = this.restLargoDuration,
       this.buttonRest();
       this.showTypeButtonPomodoro = false;

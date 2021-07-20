@@ -294,18 +294,15 @@ export default {
         username:'',
         email: '',
         password: '',
-        // newTask: '',
-      },
-      user2: {
-        username:'',
-        email: '',
-        password: '',
+        pomodoro: '25',
+        breakShor: '5',
+        breakLong: '15',
         // newTask: '',
       },
       confirmPassword: '',
-      tiempoDescansoLargo: 5,
-      tiempoDescansoCorto: 3,
-      tiempoDePomodoro: 10,
+      tiempoDescansoLargo: 15,
+      tiempoDescansoCorto: 5,
+      tiempoDePomodoro: 25,
       showSidebarMain: '',
       restLargoDuration:5,
       restCortoDuration:3,
@@ -376,6 +373,9 @@ export default {
     manejoData(data){
       if (bcryptjs.compareSync(this.user.password, data.password)){
           this.user.username = data.username;
+          this.user.pomodoro = data.pomodoro;
+          this.user.breakShor = data.tiempoDescansoCorto;
+          this.user.breakLong = data.tiempoDescansoLargo;
           this.session = true;
           this.showSidebarMain = 'PerfilUsuario';
       }
@@ -393,6 +393,9 @@ export default {
         username: this.user.username,
         email: this.user.email,
         password: bcryptjs.hashSync(this.user.password, salt),
+        tiempoDescansoLargo: this.user.pomodoro,
+        tiempoDescansoCorto: this.user.breakShor,
+        tiempoDePomodoro: this.user.breakLong,
       };
       console.log(hasheduser)
       firebase.database().ref('/usuarios').push().set(hasheduser)
@@ -401,8 +404,11 @@ export default {
     },
     configuracionTiempo(){
       this.restLargoDuration=this.tiempoDescansoLargo;
-      this.restCortoDuration=this.tiempoDescansoCorto;
-      this.pomodoroDuration=this.tiempoDePomodoro;
+      this.user.pomodoro = this.tiempoDescansoLargo;
+      this.restCortoDuration = this.tiempoDescansoCorto;
+      this.user.breakShor = this.tiempoDescansoCorto;
+      this.pomodoroDuration = this.tiempoDePomodoro;
+      this.user.breakLong = this.tiempoDescansoLargo;
       this.pathOptions["duration"]=(parseInt(this.pomodoroDuration)+1)*1000;
       this.currentTimeInSeconds = this.pomodoroDuration;
     },

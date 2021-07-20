@@ -343,6 +343,8 @@ export default {
     SiSalir(){
       this.session = false;
       this.showSidebarMain = 'sdLoginSignup';
+      this.user.email = '';
+      this.user.password = '';
     },
     salir(){
       if (!this.session){
